@@ -6,6 +6,7 @@ import com.mccorby.photolabeller.model.Stats
 import com.mccorby.photolabeller.model.Trainer
 import com.mccorby.photolabeller.repository.LocalDataSource
 import org.deeplearning4j.nn.api.Model
+import org.deeplearning4j.nn.modelimport.keras.KerasModelImport
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork
 import org.deeplearning4j.nn.transferlearning.TransferLearning
 import org.deeplearning4j.optimize.api.IterationListener
@@ -66,31 +67,27 @@ class TrainerImpl: Trainer {
 
     override fun loadModel(location: File): Stats {
         // Load model
-        model = ModelSerializer.restoreMultiLayerNetwork(location)
+        model = ModelSerializer.restoreMultiLayerNetwork(location)// TODO modify to load Keras model
 
         println(model.toString())
 
         return Stats("Model loaded")
     }
 
-    override fun train(numSamples: Int, epochs: Int): Stats {
+    override fun train(numSamples: Int, epochs: Int): Stats { //epochs 为 2
         model ?: return Stats("Model not ready")
-
-        val imageLoader = ClientCifarLoader(localDataSource, imageProcessor, config.labels)
-
-        val dataSetIterator = ClientCifarDataSetIterator(
+        val imageLoader = ClientCifarLoader(localDataSource, imageProcessor, config.labels) // 读取欲参与此轮训练的图片与标注
+        val dataSetIterator = ClientCifarDataSetIterator( // 建立迭代器
                 imageLoader,
-                config.batchSize,
+                config.batchSize, //batch size 为 16
                 1,
                 config.labels.size,
                 numSamples)
 
-        // Freeze all layers until the layer indexed in the config file
-        // This index must match the index in the model created in the server
+        //指定要設置為“特徵提取器”的圖層指定的圖層及其前面的圖層將被“凍結”，且參數保持不變, 此参数需与伺服器端设置一致
         val newModel = TransferLearning.Builder(model)
-                .setFeatureExtractor(config.featureLayerIndex)
+                .setFeatureExtractor(config.featureLayerIndex)// index layer 设置为3,
                 .build()
-        // A second model is generated with TransferLearning. We cannot afford having two!
         model = newModel
 
         model!!.setListeners(iterationListener)
