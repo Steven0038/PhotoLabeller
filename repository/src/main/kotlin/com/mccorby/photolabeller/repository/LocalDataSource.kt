@@ -10,4 +10,5 @@ interface LocalDataSource {
     fun loadModelFile(): Either<Exception, File>
     fun loadTrainingFiles(): Map<String, List<File>>
     fun serializeModel(initialStream: InputStream?): File
+    fun loadModelPath(): String
 }

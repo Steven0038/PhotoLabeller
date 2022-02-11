@@ -11,4 +11,5 @@ interface FederatedRepository {
     fun createModelFile(): File
     fun sendLocalModel(file: File, samples: Int): Boolean
     fun sendModelUpdate(modelUpdate: ByteArray, samples: Int): Boolean
+//    fun openModel2(): String
 }

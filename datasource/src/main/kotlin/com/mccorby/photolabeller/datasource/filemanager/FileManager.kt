@@ -45,6 +45,10 @@ class FileManager(private val storageDir: File, private val config: SharedConfig
         }
     }
 
+    override public fun loadModelPath(): String {
+        return storageDir.absolutePath + config.modelFilename
+    }
+
     override fun loadTrainingFiles(): Map<String, List<File>> {
         val mapFiles = mutableMapOf<String, MutableList<File>>()
         val filter = SuffixFileFilter(listOf(".png", ".jpeg", ".jpg"), IOCase.INSENSITIVE)
