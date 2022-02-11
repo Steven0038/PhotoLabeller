@@ -13,6 +13,8 @@ interface ImageProcessor {
 class ImageProcessorImpl(private val config: SharedConfig): ImageProcessor {
 
     override fun processImage(file: File): INDArray {
+//        opencv_core.Point.maxPhysicalBytes() = 1000000000;
+//        org.bytedeco.javacpp.maxphysicalbytes
         val resizedImage = opencv_core.Mat()
         val sz = opencv_core.Size(config.imageSize, config.imageSize)
         val opencvImage = org.bytedeco.javacpp.opencv_imgcodecs.imread(file.absolutePath)
