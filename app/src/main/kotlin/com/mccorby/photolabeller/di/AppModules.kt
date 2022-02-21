@@ -30,10 +30,9 @@ import space.traversal.kapsule.required
 
 class MainAppModule(context: Context, private val network: NetworkModule) : NetworkModule by network, AndroidModule {
     private val storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-//    private val modelFileName = "model_bk.zip" //TODO
-//    private val modelFileName = "model-weather.zip" //TODO
-    private val modelFileName = "model.zip" //TODO
-    override val sharedConfig get() = SharedConfig(32, 3, modelFileName, 16) // TODO
+//    private val modelFileName = "model.zip"
+    private val modelFileName = "weather_federated-1645437622269.zip"  // TODO customized model init trained by serverside
+    override val sharedConfig get() = SharedConfig(32, 3, modelFileName, 16) // TODO some config should always match to server config
     override val fileManager: FileManager
         get() {
             return FileManager(storageDir, sharedConfig)

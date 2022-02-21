@@ -22,6 +22,7 @@ import space.traversal.kapsule.Injects
 import space.traversal.kapsule.inject
 import space.traversal.kapsule.required
 import java.io.File
+import java.util.*
 
 interface OnLabellingActionsListener {
     fun onModelLoaded()
@@ -31,10 +32,9 @@ class MainFragment : Fragment(), LabellingView, Injects<LabellingModule>, OnLabe
 
     companion object {
         const val REQUEST_TAKE_PHOTO = 2
-//        val labels = arrayOf("Airplane", "Automobile", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck") // TODO
-        val labels = arrayOf("飞机", "汽车", "鸟", "猫", "鹿", "狗", "青蛙", "马", "船", "卡车") // TODO
-//        val labels = arrayOf("Cloudy", "Rain", "Shine", "Sunrise") // TODO
-//        val labels = arrayOf("daisy", "dandelion", "roses", "sunflowers", "tulips") // TODO
+//        val labels = arrayOf("Airplane", "Automobile", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck")
+//        val labels = arrayOf("飞机", "汽车", "鸟", "猫", "鹿", "狗", "青蛙", "马", "船", "卡车")
+        val labels = arrayOf("Cloudy", "Rain", "Shine", "Sunrise") // TODO
         fun newInstance(): MainFragment = MainFragment()
     }
 
@@ -114,9 +114,13 @@ class MainFragment : Fragment(), LabellingView, Injects<LabellingModule>, OnLabe
         saveAction = menu!!.findItem(R.id.action_save)
     }
 
+    /**
+     * user click result UI to save labeled img for the usage of training customized local model later
+     */
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_save -> {
-            presenter.saveLabelledImage(currentPhotoPath, view!!.selectedLabel.text.toString().toLowerCase())
+//            presenter.saveLabelledImage(currentPhotoPath, view!!.selectedLabel.text.toString().toLowerCase())
+            presenter.saveLabelledImage(currentPhotoPath, view!!.selectedLabel.text.toString().toLowerCase(Locale.ROOT))
             true
         }
         else -> false
