@@ -16,6 +16,7 @@ ext {
 
     // DL4J
     dl4j_version = "1.0.0-beta3"
+//    dl4j_version = "1.0.0-beta6"
 
     // Unit Testing
     junit_version = '4.12'

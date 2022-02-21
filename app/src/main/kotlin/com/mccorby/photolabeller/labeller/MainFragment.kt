@@ -33,6 +33,7 @@ class MainFragment : Fragment(), LabellingView, Injects<LabellingModule>, OnLabe
         const val REQUEST_TAKE_PHOTO = 2
 //        val labels = arrayOf("Airplane", "Automobile", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck") // TODO
         val labels = arrayOf("飞机", "汽车", "鸟", "猫", "鹿", "狗", "青蛙", "马", "船", "卡车") // TODO
+//        val labels = arrayOf("Cloudy", "Rain", "Shine", "Sunrise") // TODO
 //        val labels = arrayOf("daisy", "dandelion", "roses", "sunflowers", "tulips") // TODO
         fun newInstance(): MainFragment = MainFragment()
     }
