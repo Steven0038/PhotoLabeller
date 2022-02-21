@@ -6,10 +6,8 @@ import com.mccorby.photolabeller.model.Stats
 import com.mccorby.photolabeller.model.Trainer
 import com.mccorby.photolabeller.repository.LocalDataSource
 import org.deeplearning4j.nn.api.Model
-import org.deeplearning4j.nn.modelimport.keras.KerasModelImport
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork
 import org.deeplearning4j.nn.transferlearning.TransferLearning
-import org.deeplearning4j.optimize.api.IterationListener
 import org.deeplearning4j.optimize.api.TrainingListener
 import org.deeplearning4j.util.ModelSerializer
 import org.nd4j.linalg.api.ndarray.INDArray
@@ -69,7 +67,7 @@ class TrainerImpl: Trainer {
         // Load model
         model = ModelSerializer.restoreMultiLayerNetwork(location)// TODO modify to load Keras model
 
-        println(model.toString())
+        println("[loadModel]: " + model.toString())
 
         return Stats("Model loaded")
     }
@@ -86,7 +84,7 @@ class TrainerImpl: Trainer {
 
         //指定要設置為“特徵提取器”的圖層指定的圖層及其前面的圖層將被“凍結”，且參數保持不變, 此参数需与伺服器端设置一致
         val newModel = TransferLearning.Builder(model)
-                .setFeatureExtractor(config.featureLayerIndex)// index layer 设置为3,
+                .setFeatureExtractor(config.featureLayerIndex)// layer index 设置为3,
                 .build()
         model = newModel
 

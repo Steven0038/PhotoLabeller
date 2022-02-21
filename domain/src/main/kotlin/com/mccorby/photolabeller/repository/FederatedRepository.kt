@@ -7,7 +7,7 @@ interface FederatedRepository {
     fun openModel(): File
     fun createImage(): File
     fun saveLabelImage(photoPath: String, label: String): File
-    fun updateLocalModel(): Either<Exception, File>
+    fun updateLocalModel(): Either<Exception, File> // TODO 未实做
     fun createModelFile(): File
     fun sendLocalModel(file: File, samples: Int): Boolean
     fun sendModelUpdate(modelUpdate: ByteArray, samples: Int): Boolean

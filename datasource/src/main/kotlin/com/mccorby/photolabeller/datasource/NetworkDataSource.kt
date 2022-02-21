@@ -11,6 +11,7 @@ import java.io.File
 class NetworkDataSource(private val service: FederatedService, private val localDataSource: LocalDataSource) : FederatedDataSource {
     override fun updateModel(): Either<Exception, File> = runBlocking {
         try {
+            print("[updateModel]")
             val stream = service.getModel().await().byteStream()
             Either.Right(localDataSource.serializeModel(stream))
         } catch (ex: Exception) {
@@ -19,9 +20,10 @@ class NetworkDataSource(private val service: FederatedService, private val local
         }
     }
 
-    override fun getCurrentRound(): TrainingRound {
+    override fun getCurrentRound(): TrainingRound { // TODO 没用到?
         return runBlocking {
             try {
+                print("[getCurrentRound]")
                 service.getCurrentTrainingRound().await()
             } catch (ex: Exception) {
                 TrainingRound("", Long.MIN_VALUE, Long.MIN_VALUE)
@@ -32,6 +34,7 @@ class NetworkDataSource(private val service: FederatedService, private val local
     override fun uploadModel(file: File, samples: Int): Boolean {
         return runBlocking {
             try {
+                print("[uploadModel]")
                 // Note. file.readBytes can handle a max of 2Gb
                 service.sendUpdate(file.readBytes(), samples).await()
             } catch (ex: Exception) {
@@ -43,6 +46,7 @@ class NetworkDataSource(private val service: FederatedService, private val local
     override fun uploadModelUpdate(modelUpdate: ByteArray, samples: Int): Boolean {
         return runBlocking {
             try {
+                print("[uploadModelUpdate]")
                 // Note. file.readBytes can handle a max of 2Gb
                 service.sendUpdate(modelUpdate, samples).await()
             } catch (ex: Exception) {
