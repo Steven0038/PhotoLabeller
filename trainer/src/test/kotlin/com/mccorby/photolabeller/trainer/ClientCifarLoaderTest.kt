@@ -20,8 +20,8 @@ internal class ClientCifarLoaderTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        val labels = listOf("airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck")
-//        val labels = listOf("Cloudy", "Rain", "Shine", "Sunrise")
+//        val labels = listOf("airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck")
+        val labels = listOf("cloudy", "rain", "shine", "sunrise")
         cut = ClientCifarLoader(localDataSource, imageProcessor, labels)
     }
 

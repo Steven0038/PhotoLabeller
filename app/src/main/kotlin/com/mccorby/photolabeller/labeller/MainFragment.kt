@@ -33,8 +33,7 @@ class MainFragment : Fragment(), LabellingView, Injects<LabellingModule>, OnLabe
     companion object {
         const val REQUEST_TAKE_PHOTO = 2
 //        val labels = arrayOf("Airplane", "Automobile", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck")
-//        val labels = arrayOf("飞机", "汽车", "鸟", "猫", "鹿", "狗", "青蛙", "马", "船", "卡车")
-        val labels = arrayOf("Cloudy", "Rain", "Shine", "Sunrise") // TODO
+        val labels = arrayOf("cloudy", "rain", "shine", "sunrise") // TODO only allow lowercase alphabet
         fun newInstance(): MainFragment = MainFragment()
     }
 
@@ -120,7 +119,7 @@ class MainFragment : Fragment(), LabellingView, Injects<LabellingModule>, OnLabe
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_save -> {
 //            presenter.saveLabelledImage(currentPhotoPath, view!!.selectedLabel.text.toString().toLowerCase())
-            presenter.saveLabelledImage(currentPhotoPath, view!!.selectedLabel.text.toString().toLowerCase(Locale.ROOT))
+            presenter.saveLabelledImage(currentPhotoPath, view!!.selectedLabel.text.toString().toLowerCase(Locale.ROOT)) // FIXME: is it necessary force casting to lowercase?
             true
         }
         else -> false

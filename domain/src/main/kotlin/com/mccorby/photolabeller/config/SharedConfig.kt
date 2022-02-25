@@ -6,6 +6,6 @@ data class SharedConfig(val imageSize: Int,
                         val batchSize: Int,
                         val featureLayerIndex: Int = 3,
 //                        val labels: List<String> = listOf("airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck")
-                        val labels: List<String> = listOf("Cloudy", "Rain", "Shine", "Sunrise"),//TODO
+                        val labels: List<String> = listOf("cloudy", "rain", "shine", "sunrise"), //TODO only allow lowercase
                         val maxSamples: Int = 32,
                         val maxEpochs: Int = 2)

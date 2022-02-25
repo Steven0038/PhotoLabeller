@@ -10,6 +10,8 @@ import okhttp3.ResponseBody
 class FederatedService(private val federatedApi: FederatedApi) {
 
     fun sendUpdate(update: ByteArray, samples: Int): Deferred<Boolean> {
+        println("API [sendUpdate] samples: $samples")
+
         val reqFile = RequestBody.create(MediaType.parse("/*"), update)
         val requestBody = MultipartBody.Part.createFormData("file", "update", reqFile)
         val samplesField = RequestBody.create(MediaType.parse("text/plain"), samples.toString())

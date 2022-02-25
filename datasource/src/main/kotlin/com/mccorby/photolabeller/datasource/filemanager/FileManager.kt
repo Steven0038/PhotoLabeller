@@ -17,6 +17,8 @@ import java.util.*
 class FileManager(private val storageDir: File, private val config: SharedConfig) : LocalDataSource {
 
     override fun createTempFile(type: String): File {
+        println("[createTempFile] type: $type ...")
+
         // Create an image file name
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val imageFileName = "${type.toUpperCase()}_" + timeStamp + "_"
@@ -30,6 +32,8 @@ class FileManager(private val storageDir: File, private val config: SharedConfig
     }
 
     override fun saveLabelImage(currentPhotoPath: String, selectedLabel: String): File {
+        println("[saveLabelImage] $currentPhotoPath, $selectedLabel...")
+
         // Check directory for label exists
         val dir = File(storageDir.absolutePath, selectedLabel).apply { mkdir() }
 
@@ -39,17 +43,21 @@ class FileManager(private val storageDir: File, private val config: SharedConfig
     }
 
     override fun loadModelFile(): Either<Exception, File> {
+        println("[loadModelFile]...")
+
         return when (File(storageDir.absolutePath, config.modelFilename).exists()) {
             true -> Either.Right(File(storageDir.absolutePath, config.modelFilename))
             false -> Either.Left(FileNotFoundException())
         }
     }
 
-    override public fun loadModelPath(): String {
-        return storageDir.absolutePath + config.modelFilename
-    }
+//    override fun loadModelPath(): String {
+//        return storageDir.absolutePath + config.modelFilename
+//    }
 
     override fun loadTrainingFiles(): Map<String, List<File>> {
+        println("[loadTrainingFiles]...")
+
         val mapFiles = mutableMapOf<String, MutableList<File>>()
         val filter = SuffixFileFilter(listOf(".png", ".jpeg", ".jpg"), IOCase.INSENSITIVE)
         val allFiles = FileUtils

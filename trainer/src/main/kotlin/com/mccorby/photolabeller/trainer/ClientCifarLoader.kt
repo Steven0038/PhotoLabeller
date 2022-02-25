@@ -1,7 +1,6 @@
 package com.mccorby.photolabeller.trainer
 
 import com.mccorby.photolabeller.repository.LocalDataSource
-import org.datavec.image.loader.CifarLoader
 import org.nd4j.linalg.dataset.DataSet
 import org.nd4j.linalg.util.FeatureUtil
 import java.io.File
@@ -26,10 +25,11 @@ class ClientCifarLoader(private val localDataSource: LocalDataSource,
 
         if (fromIndex > maxIndex) return DataSet.empty()
 
-        println("Creating dataset for indexes $fromIndex to $maxIndex")
+        println("[createDataSet] Creating dataset for indexes $fromIndex to $maxIndex")
         for (i in fromIndex until maxIndex) {
-            println("Processing ${trainingFiles[i].file}")
-            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), CifarLoader.NUM_LABELS.toLong())
+            println("[createDataSet] Processing ${trainingFiles[i].file}")
+//            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), CifarLoader.NUM_LABELS.toLong())
+            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 4L) // TODO here use the customized model's label size, weather dataset have 4 label categories
             dataSets.add(DataSet(imageProcessor.processImage(trainingFiles[i].file), label))
         }
         return DataSet.merge(dataSets)

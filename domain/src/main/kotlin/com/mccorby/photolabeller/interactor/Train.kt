@@ -11,9 +11,9 @@ class Train(private val repository: FederatedRepository,
             postExecutionContext: ExecutionContext): UseCase<Stats, TrainParams>(executionContext, postExecutionContext) {
 
     override suspend fun run(params: TrainParams): Stats {
-        println("Train started")
+        println("[Train.run] Train started with ${params.maxSamples}...")
         val stats = trainer.train(params.maxSamples, params.epochs)
-        println("Train finished")
+        println("[Train.run] Train finished")
         trainer.saveModel(repository.createModelFile())
         val update = trainer.getUpdateFromLayer()
         repository.sendModelUpdate(update, trainer.getSamplesInTraining())
