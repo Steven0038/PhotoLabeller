@@ -20,8 +20,10 @@ internal class ClientCifarLoaderTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-//        val labels = listOf("airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck")
-        val labels = listOf("cloudy", "rain", "shine", "sunrise")
+//        val labels = listOf("airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck") // cifar10
+//        val labels = listOf("cloudy", "rain", "shine", "sunrise") // multiclass-weather-dataset
+//        val labels = listOf("dew", "fogsmog", "frost", "glaze", "hail", "lightning", "rain", "rainbow", "rime", "sandstorm", "snow") //
+        val labels = listOf("cloudy", "foggy", "rainy", "snowy", "sunny") //
         cut = ClientCifarLoader(localDataSource, imageProcessor, labels)
     }
 

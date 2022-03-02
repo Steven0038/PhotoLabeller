@@ -32,8 +32,15 @@ class MainFragment : Fragment(), LabellingView, Injects<LabellingModule>, OnLabe
 
     companion object {
         const val REQUEST_TAKE_PHOTO = 2
-//        val labels = arrayOf("Airplane", "Automobile", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck")
-        val labels = arrayOf("cloudy", "rain", "shine", "sunrise") // TODO only allow lowercase alphabet
+
+        /**
+         * TODO customized model labels
+         *
+         */
+//        val labels = arrayOf("airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck") // cifar10
+//        val labels = arrayOf("cloudy", "rain", "shine", "sunrise") // multiclass-weather-dataset
+//        val labels = arrayOf("dew", "fogsmog", "frost", "glaze", "hail", "lightning", "rain", "rainbow", "rime", "sandstorm", "snow") // Harvard Weather Image Recognition
+        val labels = arrayOf("cloudy", "foggy", "rainy", "snowy", "sunny") // SP Weather
         fun newInstance(): MainFragment = MainFragment()
     }
 

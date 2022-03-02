@@ -28,8 +28,15 @@ class ClientCifarLoader(private val localDataSource: LocalDataSource,
         println("[createDataSet] Creating dataset for indexes $fromIndex to $maxIndex")
         for (i in fromIndex until maxIndex) {
             println("[createDataSet] Processing ${trainingFiles[i].file}")
-//            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), CifarLoader.NUM_LABELS.toLong())
-            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 4L) // TODO here use the customized model's label size, weather dataset have 4 label categories
+
+            /**
+             * TODO here use the customized model's label size
+             */
+//            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 10L) // cifar10 have 10 label categories
+//            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 4L) // weather dataset have 4 label categories
+//            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 11L) // Harvard Weather Image Recognition dataset have 11 label categories
+            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 5L) // SP weather have 5 label categories
+
             dataSets.add(DataSet(imageProcessor.processImage(trainingFiles[i].file), label))
         }
         return DataSet.merge(dataSets)
