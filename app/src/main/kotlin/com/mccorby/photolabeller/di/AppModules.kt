@@ -17,7 +17,7 @@ import com.mccorby.photolabeller.interactor.LabelImage
 import com.mccorby.photolabeller.interactor.Predict
 import com.mccorby.photolabeller.interactor.Train
 import com.mccorby.photolabeller.labeller.LabellingPresenter
-import com.mccorby.photolabeller.repository.CifarRepository
+import com.mccorby.photolabeller.repository.ClientRepository
 import com.mccorby.photolabeller.trainer.ImageProcessorImpl
 import com.mccorby.photolabeller.trainer.TrainerImpl
 import com.mccorby.photolabeller.trainer.TrainingPresenter
@@ -36,7 +36,10 @@ class MainAppModule(context: Context, private val network: NetworkModule) : Netw
 //    private val modelFileName = "cifar10_federated_beta3-1645755772576-0.5110.zip" // customized cifar10
 //    private val modelFileName = "weather_federated_beta3-1645674600781.zip" // multiclass-weather-dataset
 //    private val modelFileName = "hv_weather_federated_beta3-1645769724702-0.6118.zip" // Harvard Weather Image Recognition
-    private val modelFileName = "sp_weather_federated_beta3-1645754818939-0.6664.zip" // SP Weather
+//    private val modelFileName = "sp_weather_federated_beta3-1645754818939-0.6664.zip" // SP Weather
+//    private val modelFileName = "car_body_federated_beta3-1646050267343-0.6331.zip" // car body
+//    private val modelFileName = "vehicle_detection_beta3-1646051144905.zip" // car body
+    private val modelFileName = "garbage_beta3-1646711956078.zip" // garbage classification
 
     /**
      * TODO image size and channels should always match to server config
@@ -59,7 +62,7 @@ class MainAppModule(context: Context, private val network: NetworkModule) : Netw
     override val dataSource get() = NetworkDataSource(network.federatedService, fileManager)
     private val embeddedDataSource = AssetDataSource(context.assets, storageDir, modelFileName)
     override val repository
-        get() = CifarRepository(fileManager, dataSource, embeddedDataSource)
+        get() = ClientRepository(fileManager, dataSource, embeddedDataSource)
 }
 
 // This module implementation depends on AndroidModule (provided by MainAppModule)

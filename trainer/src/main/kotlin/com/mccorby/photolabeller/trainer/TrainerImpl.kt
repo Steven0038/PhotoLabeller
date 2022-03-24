@@ -74,8 +74,8 @@ class TrainerImpl: Trainer {
 
     override fun train(numSamples: Int, epochs: Int): Stats { //epochs 为 2
         model ?: return Stats("Model not ready")
-        val imageLoader = ClientCifarLoader(localDataSource, imageProcessor, config.labels) // 读取欲参与此轮训练的图片与标注
-        val dataSetIterator = ClientCifarDataSetIterator( // 建立迭代器
+        val imageLoader = ClientImageLoader(localDataSource, imageProcessor, config.labels) // 读取欲参与此轮训练的图片与标注
+        val dataSetIterator = ClientImageDataSetIterator( // 建立迭代器
                 imageLoader,
                 config.batchSize, //batch size 为 16
                 1,
