@@ -40,10 +40,10 @@ class MainFragment : Fragment(), LabellingView, Injects<LabellingModule>, OnLabe
 //        val labels = arrayOf("airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck") // cifar10
 //        val labels = arrayOf("cloudy", "rain", "shine", "sunrise") // multiclass-weather-dataset
 //        val labels = arrayOf("dew", "fogsmog", "frost", "glaze", "hail", "lightning", "rain", "rainbow", "rime", "sandstorm", "snow") // Harvard Weather Image Recognition
-//        val labels = arrayOf("cloudy", "foggy", "rainy", "snowy", "sunny") // SP Weather
+        val labels = arrayOf("cloudy", "foggy", "rainy", "snowy", "sunny") // SP Weather
 //        val labels = arrayOf("small_car", "large_car") // car body
 //        val labels = arrayOf("vehicle", "non_vehicle") // vehicle detection
-        val labels = arrayOf("cardboard", "glass", "metal", "paper", "plastic", "trash") // garbage classification
+//        val labels = arrayOf("cardboard", "glass", "metal", "paper", "plastic", "trash") // garbage classification
         fun newInstance(): MainFragment = MainFragment()
     }
 

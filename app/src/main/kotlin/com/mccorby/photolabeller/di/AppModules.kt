@@ -36,10 +36,10 @@ class MainAppModule(context: Context, private val network: NetworkModule) : Netw
 //    private val modelFileName = "cifar10_federated_beta3-1645755772576-0.5110.zip" // customized cifar10
 //    private val modelFileName = "weather_federated_beta3-1645674600781.zip" // multiclass-weather-dataset
 //    private val modelFileName = "hv_weather_federated_beta3-1645769724702-0.6118.zip" // Harvard Weather Image Recognition
-//    private val modelFileName = "sp_weather_federated_beta3-1645754818939-0.6664.zip" // SP Weather
+    private val modelFileName = "sp_weather_federated_beta3-1645754818939-0.6664.zip" // SP Weather
 //    private val modelFileName = "car_body_federated_beta3-1646050267343-0.6331.zip" // car body
-//    private val modelFileName = "vehicle_detection_beta3-1646051144905.zip" // car body
-    private val modelFileName = "garbage_beta3-1646711956078.zip" // garbage classification
+//    private val modelFileName = "vehicle_detection_beta3-1646051144905.zip" // vehicle_detection
+//    private val modelFileName = "garbage_beta3-1646711956078.zip" // garbage classification
 
     /**
      * TODO image size and channels should always match to server config

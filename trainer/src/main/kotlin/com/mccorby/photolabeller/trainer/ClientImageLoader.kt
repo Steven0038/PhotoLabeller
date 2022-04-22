@@ -35,10 +35,10 @@ class ClientImageLoader(private val localDataSource: LocalDataSource,
 //            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 10L) // cifar10 have 10 label categories
 //            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 4L) // weather dataset have 4 label categories
 //            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 11L) // Harvard Weather Image Recognition dataset have 11 label categories
-//            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 5L) // SP weather have 5 label categories
+            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 5L) // SP weather have 5 label categories
 //            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 2L) // carBody have 2 label categories
 //            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 2L) // vehicle detection have 2 label categories
-            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 6L) // garbage classification have 6 label categories
+//            val label = FeatureUtil.toOutcomeVector(labelToIndex(trainingFiles[i].label), 6L) // garbage classification have 6 label categories
 
             dataSets.add(DataSet(imageProcessor.processImage(trainingFiles[i].file), label))
         }
